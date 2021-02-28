@@ -21,12 +21,26 @@ export default class extends Component {
         enableReinitialize={true}
       >
         {({ handleSubmit }) => (
-          <form onSubmit={handleSubmit} className="d-flex flex-column">
-            <Field name="name" placeholder="name" />
-            <Field name="username" placeholder="username" />
-            <Field name="email" placeholder="email" />
-            <button type="submit">Save</button>
-          </form>
+          <div className="container-fluid p-5 bg-ligth d-flex flex-column justify-content-center align-items-center">
+            <form
+              onSubmit={handleSubmit}
+              className="d-flex flex-column bg-white border p-3 d-flex flex-column"
+            >
+              <div className="form-group">
+                <label>Name</label>
+                <Field name="name" className="form-control" />
+              </div>
+              <div className="form-group">
+                <label>Username</label>
+                <Field name="username" className="form-control" />
+              </div>
+              <div className="form-group">
+                <label>Email</label>
+                <Field name="email" className="form-control" />
+              </div>
+              <button type='submit' className='btn btn-dark'>Save</button>
+            </form>
+          </div>
         )}
       </Formik>
     );
