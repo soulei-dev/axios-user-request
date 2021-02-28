@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import "./App.css";
 import AddUser from "./AddUser";
 import UserList from "./UserList";
+import * as axios from "axios";
 
 class App extends Component {
   constructor(props) {
@@ -14,17 +15,27 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    axios
+      .get("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.data)
+      .then((users) => this.setState({ users }))
+      .catch((err) => console.log(err));
+  }
+
   render() {
     return (
       <div
-        style={{ height: "100vh" }}
+        style={{ minHeight: "100vh" }}
         className="container-fluid d-flex flex-column p-5 bg-light justify-content-center align-items-center"
       >
+        <h1>List of users</h1>
         <UserList
           users={this.state.users}
           selectedUser={(index) => this.setState({ selectedUser: index })}
         />
         <hr className="w-100 my-5" />
+        <h1>Add users of the list</h1>
         <AddUser
           user={
             this.state.users && this.state.users[this.state.selectedUser]

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Formik, Field } from "formik";
+import * as axios from "axios";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default class extends Component {
@@ -10,13 +11,17 @@ export default class extends Component {
   };
 
   submit = (values, actions) => {
-    console.log(values);
+    axios
+      .post("https://jsonplaceholder.typicode.com/users", values)
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   render() {
     return (
       <Formik
-        initialValues={this.getInitialValues}
+        initialValues={this.getInitialValues()}
         onSubmit={this.submit}
         enableReinitialize={true}
       >
@@ -24,7 +29,7 @@ export default class extends Component {
           <div className="container-fluid p-5 bg-ligth d-flex flex-column justify-content-center align-items-center">
             <form
               onSubmit={handleSubmit}
-              className="d-flex flex-column bg-white border p-3 d-flex flex-column"
+              className="d-flex flex-column bg-white border p-3 flex-column"
             >
               <div className="form-group">
                 <label>Name</label>
@@ -38,7 +43,9 @@ export default class extends Component {
                 <label>Email</label>
                 <Field name="email" className="form-control" />
               </div>
-              <button type='submit' className='btn btn-dark'>Save</button>
+              <button type="submit" className="btn btn-dark">
+                Save
+              </button>
             </form>
           </div>
         )}
