@@ -21,6 +21,7 @@ export default (props) => {
                 <li className="list-group-item">{u.username}</li>
                 <li className="list-group-item">{u.email}</li>
               </ul>
+              <button className='mt-4 btn btn-small btn-danger' onClick={() => props.deleteUser(u.id)}>Delete</button>
             </div>
           </div>
         ))

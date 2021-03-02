@@ -23,6 +23,12 @@ class App extends Component {
       .catch((err) => console.log(err));
   }
 
+  deleteUser = (id) => {
+    axios
+      .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
+      .then((res) => console.log(res));
+  };
+
   render() {
     return (
       <div
@@ -31,6 +37,7 @@ class App extends Component {
       >
         <h1>List of users</h1>
         <UserList
+          deleteUser={this.deleteUser}
           users={this.state.users}
           selectedUser={(index) => this.setState({ selectedUser: index })}
         />

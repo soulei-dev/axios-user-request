@@ -11,11 +11,19 @@ export default class extends Component {
   };
 
   submit = (values, actions) => {
-    axios
-      .post("https://jsonplaceholder.typicode.com/users", values)
+    if (!this.props.user) {
+      axios
+        .post("https://jsonplaceholder.typicode.com/users", values)
+        .then((res) => {
+          console.log(res);
+        });
+    } else {
+      axios
+      .put(`https://jsonplaceholder.typicode.com/users/${values.id}`, values)
       .then((res) => {
         console.log(res);
       });
+    }
   };
 
   render() {
